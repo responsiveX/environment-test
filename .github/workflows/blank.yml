@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: TestEnvironments
 
 # Controls when the workflow will run
 on:
@@ -13,41 +13,91 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: windows-latest
-    environment: Dev-London
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
-
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: echo Hello, world!
 
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
-
   # This workflow contains a single job called "build"
-  deploy:
+  deployToDevLondon:
     # The type of runner that the job will run on
     runs-on: windows-latest
-    environment: Prod-London
+    environment: Dev-London
     needs: build
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
-
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: echo Hello, world!
 
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+  # This workflow contains a single job called "build"
+  deployDevQuincy:
+    # The type of runner that the job will run on
+    runs-on: windows-latest
+    environment: Dev-Quincy
+    needs: build
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Runs a single command using the runners shell
+      - name: Run a one-line script
+        run: echo Hello, world!
+
+  # This workflow contains a single job called "build"
+  deployDevVirginia:
+    # The type of runner that the job will run on
+    runs-on: windows-latest
+    environment: Dev-Virginia
+    needs: build
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Runs a single command using the runners shell
+      - name: Run a one-line script
+        run: echo Hello, world!
+
+
+
+
+
+  # This workflow contains a single job called "build"
+  deployToProdLondon:
+    # The type of runner that the job will run on
+    runs-on: windows-latest
+    environment: Prod-London
+    needs: deployToDevLondon
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Runs a single command using the runners shell
+      - name: Run a one-line script
+        run: echo Hello, world!
+
+  # This workflow contains a single job called "build"
+  deployProdQuincy:
+    # The type of runner that the job will run on
+    runs-on: windows-latest
+    environment: Prod-Quincy
+    needs: deployDevQuincy
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Runs a single command using the runners shell
+      - name: Run a one-line script
+        run: echo Hello, world!
+
+  # This workflow contains a single job called "build"
+  deployProdVirginia:
+    # The type of runner that the job will run on
+    runs-on: windows-latest
+    environment: Prod-Virginia
+    needs: deployDevVirginia
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Runs a single command using the runners shell
+      - name: Run a one-line script
+        run: echo Hello, world!
