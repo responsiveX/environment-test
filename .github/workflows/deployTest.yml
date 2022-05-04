@@ -9,7 +9,14 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
+  JobWithNoDependencies:
+    runs-on: windows-latest
+    steps:
+      - name: step 1
+        run: echo Don't do anything
+        
+
+        
   ReusableWorkflowJob:
     needs: build
     # The type of runner that the job will run on
