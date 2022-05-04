@@ -21,6 +21,7 @@ jobs:
         run: echo Hello, world!
 
   testResuable:
+    needs: build
     uses: ./.github/workflows/deployTest.yml
 
   # This workflow contains a single job called "build"
