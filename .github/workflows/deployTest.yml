@@ -6,13 +6,17 @@ name: ReusableWorkflow
 on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_call:
+    inputs:
+      environment:
+        required: true
+        type: string
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs: 
   ReusableWorkflowJob:
     # The type of runner that the job will run on
     runs-on: windows-latest
-    environment: Dev-London
+    environment: ${{ inputs.environment }}
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:

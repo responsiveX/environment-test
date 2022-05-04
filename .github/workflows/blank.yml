@@ -23,6 +23,8 @@ jobs:
   testResuable:
     needs: build
     uses: ./.github/workflows/deployTest.yml
+    with:
+      environment: Prod-Quincy
 
   # This workflow contains a single job called "build"
   deployToDevLondon:
